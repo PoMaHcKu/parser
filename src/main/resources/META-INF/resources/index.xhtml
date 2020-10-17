@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Parser</title>
+    </h:head>
+
+    <h:body>
+        <p:panel header="Анализируемая страница" id="analizId">
+            <p:inputTextarea rows="3" style="width: 100%;" completeMethod="#{inputTextareaView.completeArea}"
+                             queryDelay="750" minQueryLength="4">
+                <p:ajax event="itemSelect" listener="#{inputTextareaView.onSelect}"/>
+            </p:inputTextarea>
+            <p:button value="Анализировать"
+                      id="ajax"
+                      update="analizId"
+                      action="#{buttonView.buttonAction}"
+                      styleClass="ui-priority-primary"/>
+        </p:panel>
+        <p:panel id="basic" header="Обнаруженные ссылки" style="margin:10px 0">
+            <p:dataTable resizableColumns="true" var="car" value="#{dtBasicView.cars}">
+                <p:column width="5" headerText="№ п/п">
+                    <h:outputText value="#{car.id}"/>
+                </p:column>
+                <p:column width="50" headerText="Имя ссылки">
+                    <h:outputText value="#{car.year}"/>
+                </p:column>
+
+                <p:column width="100" headerText="Адрес ссылки">
+                    <h:outputText value="#{car.brand}"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </h:body>
+</html>
