@@ -8,18 +8,18 @@
     </h:head>
 
     <h:body>
-        <p:panel header="Анализируемая страница" id="analizId">
+        <p:panel header="Анализируемая страница" id="analisisId">
             <p:inputTextarea rows="3" style="width: 100%;" completeMethod="#{inputTextareaView.completeArea}"
                              queryDelay="750" minQueryLength="4">
                 <p:ajax event="itemSelect" listener="#{inputTextareaView.onSelect}"/>
             </p:inputTextarea>
             <p:button value="Анализировать"
-                      id="ajax"
-                      update="analizId"
+                      id="startAnalisis"
+                      update="analisisId"
                       action="#{buttonView.buttonAction}"
                       styleClass="ui-priority-primary"/>
         </p:panel>
-        <p:panel id="basic" header="Обнаруженные ссылки" style="margin:10px 0">
+        <p:panel id="foundedLinks" header="Обнаруженные ссылки" style="margin:10px 0">
             <p:dataTable resizableColumns="true" var="car" value="#{dtBasicView.cars}">
                 <p:column width="5" headerText="№ п/п">
                     <h:outputText value="#{car.id}"/>
@@ -32,6 +32,12 @@
                     <h:outputText value="#{car.brand}"/>
                 </p:column>
             </p:dataTable>
+
+            <p:commandButton value="Очистить" id="clearData"
+                             update="foundedLinks"
+                             action="#{buttonView.buttonAction}"
+                             style="margin-right:20px;"
+                             styleClass="ui-priority-primary"/>
         </p:panel>
     </h:body>
 </html>
