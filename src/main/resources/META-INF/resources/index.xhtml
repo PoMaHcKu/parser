@@ -9,33 +9,37 @@
 
     <h:body>
         <p:panel header="Анализируемая страница" id="analisisId">
-            <p:inputTextarea rows="3" style="width: 100%;" completeMethod="#{inputTextareaView.completeArea}"
-                             queryDelay="750" minQueryLength="4">
-                <p:ajax event="itemSelect" listener="#{inputTextareaView.onSelect}"/>
-            </p:inputTextarea>
-            <p:button value="Анализировать"
-                      id="startAnalisis"
-                      update="analisisId"
-                      action="#{buttonView.buttonAction}"
-                      styleClass="ui-priority-primary"/>
+            <h:form>
+                <p:inputTextarea rows="3"
+                                 value="${index.link}"
+                                 style="width: 100%;">
+                </p:inputTextarea>
+                <p:commandButton value="Анализировать"
+                                 id="startAnalisis"
+                                 update="foundedLinks"
+                                 action="${index.analysisLink}"
+                                 styleClass="ui-priority-primary">
+                    <p:ajax update="foundedLinks" listener="${index.analysisLink}"/>
+                </p:commandButton>
+            </h:form>
         </p:panel>
         <p:panel id="foundedLinks" header="Обнаруженные ссылки" style="margin:10px 0">
-            <p:dataTable resizableColumns="true" var="car" value="#{dtBasicView.cars}">
+            <p:dataTable resizableColumns="true" var="link" value="#{index.foundedLinks}">
                 <p:column width="5" headerText="№ п/п">
-                    <h:outputText value="#{car.id}"/>
+                    <h:outputText value="#{link.id}" escape="false" style="white-space:pre-line;"/>
                 </p:column>
                 <p:column width="50" headerText="Имя ссылки">
-                    <h:outputText value="#{car.year}"/>
+                    <h:outputText value="#{link.name}" escape="false" style="white-space:pre-line;"/>
                 </p:column>
 
                 <p:column width="100" headerText="Адрес ссылки">
-                    <h:outputText value="#{car.brand}"/>
+                    <h:outputText value="#{link.address}" escape="false" style="white-space:pre-line;"/>
                 </p:column>
             </p:dataTable>
 
             <p:commandButton value="Очистить" id="clearData"
-                             update="foundedLinks"
-                             action="#{buttonView.buttonAction}"
+                             update="foundedLinks analisisId"
+                             action="#{index.clearFoundedLinks}"
                              style="margin-right:20px;"
                              styleClass="ui-priority-primary"/>
         </p:panel>
