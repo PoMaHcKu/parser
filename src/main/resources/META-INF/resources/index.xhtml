@@ -10,10 +10,15 @@
     <h:body>
         <p:panel header="Анализируемая страница" id="analisisId">
             <h:form>
-                <p:inputTextarea rows="3"
+                <p:inputTextarea id="inputLink"
+                                 rows="3"
                                  value="${index.link}"
+                                 required="true"
                                  style="width: 100%;">
+                    <f:validateLength minimum="4"/>
+                    <p:ajax update="msgInputLink" event="keyup"/>
                 </p:inputTextarea>
+                <p:message for="inputLink" id="msgInputLink" display="icon"/>
                 <p:commandButton value="Анализировать"
                                  id="startAnalisis"
                                  update="foundedLinks"
@@ -21,6 +26,11 @@
                                  styleClass="ui-priority-primary">
                     <p:ajax update="foundedLinks" listener="${index.analysisLink}"/>
                 </p:commandButton>
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+                <p:dialog widgetVar="statusDialog" closable="false" resizable="false"
+                                showHeader="false">
+                    <p:graphicImage id="status" value="images/preloader.gif"/>
+                </p:dialog>
             </h:form>
         </p:panel>
         <p:panel id="foundedLinks" header="Обнаруженные ссылки" style="margin:10px 0">
