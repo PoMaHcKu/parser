@@ -40,9 +40,14 @@
                 <p:column width="50" headerText="Имя ссылки">
                     <h:outputText value="#{link.name}" escape="false" style="white-space:pre-line;"/>
                 </p:column>
-
                 <p:column width="100" headerText="Адрес ссылки">
-                    <h:outputText value="#{link.address}" escape="false" style="white-space:pre-line;"/>
+<!--                    <h:outputText value="#{link.address}" escape="false" style="white-space:pre-line;"/>-->
+                    <h:commandLink value="#{link.address}"
+                                   action="#{index.setLink(link.address)}"
+                                   escape="false"
+                                   style="white-space:pre-line;">
+                        <p:ajax listener="#{index.setLink}" update="analisisId foundedLinks"/>
+                    </h:commandLink>
                 </p:column>
             </p:dataTable>
 

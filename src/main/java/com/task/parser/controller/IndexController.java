@@ -42,6 +42,7 @@ public class IndexController implements Serializable {
     }
 
     public void setLink(String link) {
+        foundedLinks.clear();
         this.link = link;
     }
 
