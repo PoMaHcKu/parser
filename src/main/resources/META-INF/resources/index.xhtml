@@ -21,7 +21,6 @@
                 <p:message for="inputLink" id="msgInputLink" display="icon"/>
                 <p:commandButton value="Анализировать"
                                  id="startAnalisis"
-                                 update="foundedLinks"
                                  action="${index.analysisLink}"
                                  styleClass="ui-priority-primary">
                     <p:ajax update="foundedLinks" listener="${index.analysisLink}"/>
