@@ -20,16 +20,20 @@
                 </p:inputTextarea>
                 <p:message for="inputLink" id="msgInputLink" display="icon"/>
                 <p:commandButton value="Анализировать"
-                                 id="startAnalisis"
+                                 id="startAnalysis"
                                  action="${index.analysisLink}"
                                  styleClass="ui-priority-primary">
                     <p:ajax update="foundedLinks" listener="${index.analysisLink}"/>
+                    <p:ajaxStatus>
+                        <f:facet name="start">
+                            <p:panel header="Идет обработка">
+                                <div style="width: 100px; margin: 0 auto;">
+                                    <p:graphicImage id="status" value="images/preloader.gif"/>
+                                </div>
+                            </p:panel>
+                        </f:facet>
+                    </p:ajaxStatus>
                 </p:commandButton>
-                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
-                <p:dialog widgetVar="statusDialog" closable="false" resizable="false"
-                                showHeader="false">
-                    <p:graphicImage id="status" value="images/preloader.gif"/>
-                </p:dialog>
             </h:form>
         </p:panel>
         <p:panel id="foundedLinks" header="Обнаруженные ссылки" style="margin:10px 0">
@@ -41,7 +45,6 @@
                     <h:outputText value="#{link.name}" escape="false" style="white-space:pre-line;"/>
                 </p:column>
                 <p:column width="100" headerText="Адрес ссылки">
-<!--                    <h:outputText value="#{link.address}" escape="false" style="white-space:pre-line;"/>-->
                     <h:commandLink value="#{link.address}"
                                    action="#{index.setLink(link.address)}"
                                    escape="false"
