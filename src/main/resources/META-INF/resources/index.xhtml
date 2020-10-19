@@ -12,7 +12,7 @@
             <h:form>
                 <p:inputTextarea id="inputLink"
                                  rows="3"
-                                 value="${index.link}"
+                                 value="#{index.link}"
                                  required="true"
                                  style="width: 100%;">
                     <f:validateLength minimum="4"/>
@@ -21,9 +21,9 @@
                 <p:message for="inputLink" id="msgInputLink" display="icon"/>
                 <p:commandButton value="Анализировать"
                                  id="startAnalysis"
-                                 action="${index.analysisLink}"
+                                 action="#{index.analysisLink}"
                                  styleClass="ui-priority-primary">
-                    <p:ajax update="foundedLinks" listener="${index.analysisLink}"/>
+                    <p:ajax update="foundedLinks" listener="#{index.analysisLink}"/>
                     <p:ajaxStatus>
                         <f:facet name="start">
                             <p:panel header="Идет обработка">
