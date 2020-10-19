@@ -6,16 +6,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-@SessionScope
+@Named
 public class HtmlAnalysisService {
 
     private UrlValidator validator;
@@ -37,13 +35,14 @@ public class HtmlAnalysisService {
             Elements links = body.getElementsByTag("a");
             int count = 0;
             for (Element el : links) {
-                if (validator.isValid(el.attr("href"))) {
-                    Document document = Jsoup.connect(el.attr("href")).get();
+                String mayBeLink = el.attr("href");
+                if (validator.isValid(mayBeLink)) {
+                    Document document = Jsoup.connect(mayBeLink).get();
                     String title = document.title();
                     Link foundedLink = new Link();
                     foundedLink.setId(++count);
                     foundedLink.setName(title);
-                    foundedLink.setAddress(el.attr("href"));
+                    foundedLink.setAddress(mayBeLink);
                     foundedLinks.add(foundedLink);
                 }
             }
