@@ -2,11 +2,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
     <h:head>
         <title>Parser</title>
     </h:head>
-
     <h:body>
         <p:panel header="Анализируемая страница" id="analisisId">
             <h:form>
@@ -14,10 +12,8 @@
                                  rows="3"
                                  validator="validator"
                                  value="#{index.link}"
-                                 required="true"
                                  style="width: 100%;">
-                    <f:validateLength minimum="4"/>
-                    <p:ajax update="msgInputLink" event="keyup"/>
+                    <p:ajax update="msgInputLink" event="keyup" global="false"/>
                 </p:inputTextarea>
                 <p:message for="inputLink" id="msgInputLink"/>
                 <p:commandButton value="Анализировать"
@@ -54,7 +50,6 @@
                     </h:commandLink>
                 </p:column>
             </p:dataTable>
-
             <p:commandButton value="Очистить" id="clearData"
                              update="foundedLinks analisisId"
                              action="#{index.clearFoundedLinks}"
