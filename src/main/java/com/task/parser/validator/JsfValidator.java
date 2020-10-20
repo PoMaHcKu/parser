@@ -15,9 +15,9 @@ public class JsfValidator implements Validator<String> {
     @Override
     public void validate(FacesContext context, UIComponent component, String s) throws ValidatorException {
         UrlValidator urlValidator = new UrlValidator();
-        s = checkAndGetHttpProtocol(s);
+        s = checkAndGetHttpProtocol(s.trim());
         if (!urlValidator.isValid(s)) {
-            throw new ValidatorException(new FacesMessage(s + " incorrect url"));
+            throw new ValidatorException(new FacesMessage("", "Некоректная ссылка"));
         }
     }
 
