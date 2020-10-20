@@ -12,13 +12,14 @@
             <h:form>
                 <p:inputTextarea id="inputLink"
                                  rows="3"
+                                 validator="validator"
                                  value="#{index.link}"
                                  required="true"
                                  style="width: 100%;">
                     <f:validateLength minimum="4"/>
                     <p:ajax update="msgInputLink" event="keyup"/>
                 </p:inputTextarea>
-                <p:message for="inputLink" id="msgInputLink" display="icon"/>
+                <p:message for="inputLink" id="msgInputLink"/>
                 <p:commandButton value="Анализировать"
                                  id="startAnalysis"
                                  action="#{index.analysisLink}"
