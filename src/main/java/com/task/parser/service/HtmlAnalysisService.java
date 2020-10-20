@@ -25,10 +25,6 @@ public class HtmlAnalysisService {
 
     public List<Link> analysisLink(String link) {
         List<Link> foundedLinks = new ArrayList<>();
-        if (!validator.isValid(link)) {
-            System.out.println("incorrect url");
-            return null;
-        }
         try {
             Document doc = Jsoup.connect(link).get();
             Element body = doc.body();
