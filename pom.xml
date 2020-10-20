@@ -12,6 +12,7 @@
     <artifactId>parser</artifactId>
     <version>0.0.1</version>
     <name>parser</name>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -28,6 +29,12 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
