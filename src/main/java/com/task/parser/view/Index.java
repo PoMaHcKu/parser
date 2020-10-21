@@ -1,4 +1,4 @@
-package com.task.parser.controller;
+package com.task.parser.view;
 
 import com.task.parser.model.Link;
 import com.task.parser.service.HtmlAnalysisService;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Named("index")
 @ViewScoped
-public class IndexController implements Serializable {
+public class Index implements Serializable {
 
     private String link;
     private List<Link> foundedLinks;

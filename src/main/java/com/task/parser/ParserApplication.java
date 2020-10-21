@@ -2,22 +2,21 @@ package com.task.parser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import javax.faces.webapp.FacesServlet;
 
 @SpringBootApplication
-public class ParserApplication extends SpringBootServletInitializer {
+public class ParserApplication {
     public static void main(String[] args) {
         SpringApplication.run(ParserApplication.class, args);
     }
 
-    @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        servletContext.setInitParameter(
-                "com.sun.faces.expressionFactory",
-                "org.apache.el.ExpressionFactoryImpl"
-        );
+    @Bean
+    public ServletRegistrationBean<FacesServlet> servletRegistrationBean() {
+        FacesServlet servlet = new FacesServlet();
+        return (ServletRegistrationBean<FacesServlet>)
+                new ServletRegistrationBean(servlet, "*.xhtml");
     }
 }
