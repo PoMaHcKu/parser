@@ -2,6 +2,11 @@ package com.task.parser.model;
 
 import javax.enterprise.inject.Model;
 
+/**
+ * Представляет модель ссылки для отображения.
+ * Хранит идентификатор ссылки, имя html страницы представленной по ссылке
+ * и непосредственно адресс ссылки.
+ */
 @Model
 public class Link {
     private int id;

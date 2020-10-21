@@ -11,16 +11,16 @@
                 <p:inputTextarea id="inputLink"
                                  rows="3"
                                  validator="validator"
-                                 value="#{index.link}"
+                                 value="#{linkController.link}"
                                  style="width: 100%;">
                     <p:ajax update="msgInputLink" event="keyup" global="false"/>
                 </p:inputTextarea>
                 <p:message for="inputLink" id="msgInputLink"/>
                 <p:commandButton value="Анализировать"
                                  id="startAnalysis"
-                                 action="#{index.analysisLink}"
+                                 action="#{linkController.analysisLink}"
                                  styleClass="ui-priority-primary">
-                    <p:ajax update="foundedLinks" listener="#{index.analysisLink}"/>
+                    <p:ajax update="foundedLinks" listener="#{linkController.analysisLink}"/>
                     <p:ajaxStatus>
                         <f:facet name="start">
                             <p:panel header="Идет обработка">
@@ -34,7 +34,7 @@
             </h:form>
         </p:panel>
         <p:panel id="foundedLinks" header="Обнаруженные ссылки" style="margin:10px 0">
-            <p:dataTable resizableColumns="true" var="link" value="#{index.foundedLinks}">
+            <p:dataTable resizableColumns="true" var="link" value="#{linkController.foundedLinks}">
                 <p:column width="5" headerText="№ п/п">
                     <h:outputText value="#{link.id}" escape="false" style="white-space:pre-line;"/>
                 </p:column>
@@ -43,16 +43,16 @@
                 </p:column>
                 <p:column width="100" headerText="Адрес ссылки">
                     <h:commandLink value="#{link.address}"
-                                   action="#{index.setLink(link.address)}"
+                                   action="#{linkController.setLink(link.address)}"
                                    escape="false"
                                    style="white-space:pre-line;">
-                        <p:ajax listener="#{index.setLink}" update="analisisId foundedLinks"/>
+                        <p:ajax listener="#{linkController.setLink}" update="analisisId foundedLinks"/>
                     </h:commandLink>
                 </p:column>
             </p:dataTable>
             <p:commandButton value="Очистить" id="clearData"
                              update="foundedLinks analisisId"
-                             action="#{index.clearFoundedLinks}"
+                             action="#{linkController.clearFoundedLinks}"
                              global="false"
                              style="margin-right:20px;"
                              styleClass="ui-priority-primary"/>

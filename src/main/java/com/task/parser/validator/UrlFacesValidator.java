@@ -10,7 +10,6 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- * UrlFacesValidator class
  * Реализует интерфейс javax.faces.validator.Validator.
  * Валидирует строку из xhtml страницы в режиме реального времени.
  */
@@ -18,8 +17,8 @@ import javax.faces.validator.ValidatorException;
 public class UrlFacesValidator implements Validator<String> {
 
     /**
-     * Проверяет является ли строка ссылкой, в случаен непрохождения проверки бросает исключение
-     * с сообщением о непрохождении проверки.
+     * Проверяет является ли строка ссылкой, в случае непрохождения проверки бросает исключение
+     * ValidatorException с сообщением о непрохождении проверки.
      * @param context   FacesContext
      * @param component UIComponent
      * @param s         String
