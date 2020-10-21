@@ -10,39 +10,27 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- * JfsValidator
+ * UrlFacesValidator class
  * Реализует интерфейс javax.faces.validator.Validator.
  * Валидирует строку из xhtml страницы в режиме реального времени.
  */
 @FacesValidator("validator")
-public class JsfValidator implements Validator<String> {
+public class UrlFacesValidator implements Validator<String> {
 
     /**
-     * @param context FacesContext
-     * @param component UIComponent
-     * @param s String
-     * @throws ValidatorException некорректная ссылка
      * Проверяет является ли строка ссылкой, в случаен непрохождения проверки бросает исключение
      * с сообщением о непрохождении проверки.
+     * @param context   FacesContext
+     * @param component UIComponent
+     * @param s         String
+     * @throws ValidatorException некорректная ссылка
      */
     @Override
     public void validate(FacesContext context, UIComponent component, String s) throws ValidatorException {
         UrlValidator urlValidator = new UrlValidator();
-        s = checkAndGetHttpProtocol(s.trim());
         if (!urlValidator.isValid(s)) {
-            throw new ValidatorException(new FacesMessage("", "Некоректная ссылка"));
+            String detailMessage = "Некоректная ссылка. Верный формат ссылки http(s)://address.domain";
+            throw new ValidatorException(new FacesMessage("", detailMessage));
         }
-    }
-
-    /**
-     * @param url String
-     * @return protocol + url String
-     * Проверяет содержит ли ссылка протокол, если нет - добавляет http:// перед ссылкой
-     */
-    public String checkAndGetHttpProtocol(String url) {
-        if (url.startsWith("https://") || url.startsWith("http://")) {
-            return url;
-        }
-        return "http://" + url;
     }
 }
